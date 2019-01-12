@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption" ref="mySwiper">
+    <swiper :options="swiperOption" v-if="showSwiper">
       <!-- slides -->
-      <swiper-slide v-for="item of imgList" :key="item.id">
+      <swiper-slide v-for="item of swiperList" :key="item.id">
         <img
           class="swiper-img"
-          :src="item.url"
+          :src="item.imgUrl"
           alt="item.id"
         >
       </swiper-slide>
@@ -18,41 +18,24 @@
 <script>
 export default {
   name: "HomeSwiper",
-  data () {
+  props: {
+    swiperList: Array
+  },
+  data() {
     return {
       swiperOption: {
         pagination: {
           el: '.swiper-pagination'
         },
         loop: true
-      },
-      imgList: [
-        {
-          id: '1',
-          url: "//source.qunarzz.com/site/images/wns/20181227_qunar_homepage_dujia_5.jpg"
-        },
-        {
-          id: '2',
-          url: "//source.qunarzz.com/site/images/wns/20190104_dujia_homepage_top_banner_1.jpg"
-        },
-        {
-          id: '3',
-          url: "//source.qunarzz.com/site/images/wns/20190103_dujia_homepage_3.jpg"
-        }
-      ]
+      }
     };
   },
-  // computed: {
-  //   swiper() {
-  //     return this.$refs.mySwiper.swiper;
-  //   }
-  // },
-  // mounted() {
-  //   // current swiper instance
-  //   // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-  //   console.log("this is current swiper instance object", this.swiper);
-  //   this.swiper.slideTo(3, 1000, false);
-  // }
+  computed: {
+    showSwiper() {
+      return this.swiperList.length
+    }
+  }
 };
 </script>
 
@@ -63,7 +46,7 @@ export default {
   overflow: hidden
   width: 100%
   height: 0
-  padding-bottom: 25.6% 
+  padding-bottom: 31.25% 
   .swiper-img 
     width: 100%;
 
