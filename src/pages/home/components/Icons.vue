@@ -58,8 +58,8 @@ export default {
 .icons {
   overflow: hidden;
   height: 0;
+  margin-top: .1rem;
   padding-bottom: 54%;
-
   .icon {
     position: relative;
     overflow: hidden;
